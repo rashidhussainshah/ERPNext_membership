@@ -6,7 +6,7 @@ from frappe.utils import today
 try:
 	from frappe.tests import IntegrationTestCase
 except ImportError:  # Frappe v15
-	from frappe.tests.utils import FrappeTestCase as IntegrationTestCase  # noqa: F401
+	from frappe.tests.utils import FrappeTestCase as IntegrationTestCase
 
 
 def make_membership_type(fee=100, duration_months=12, grace_period_days=30, **kwargs):

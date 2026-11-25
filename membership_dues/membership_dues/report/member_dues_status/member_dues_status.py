@@ -41,13 +41,24 @@ def get_data(filters):
 	if filters.membership_type:
 		conditions["membership_type"] = filters.membership_type
 	if cint(filters.expiring_within_days) > 0:
-		conditions["paid_until"] = ["between", [today(), add_days(today(), cint(filters.expiring_within_days))]]
+		conditions["paid_until"] = [
+			"between",
+			[today(), add_days(today(), cint(filters.expiring_within_days))],
+		]
 
 	# get_list (not get_all) so the user's permissions apply
 	rows = frappe.get_list(
 		"Member",
 		filters=conditions,
-		fields=["name", "full_name", "membership_type", "status", "paid_until", "last_payment_date", "total_paid"],
+		fields=[
+			"name",
+			"full_name",
+			"membership_type",
+			"status",
+			"paid_until",
+			"last_payment_date",
+			"total_paid",
+		],
 		order_by="paid_until asc",
 	)
 	for row in rows:
@@ -74,7 +85,9 @@ def get_chart(data):
 
 def get_summary(data):
 	active = [row for row in data if row.status == "Active"]
-	expiring = [row for row in active if row.days_left is not None and 0 <= row.days_left <= EXPIRING_SOON_DAYS]
+	expiring = [
+		row for row in active if row.days_left is not None and 0 <= row.days_left <= EXPIRING_SOON_DAYS
+	]
 	return [
 		{"label": _("Active Members"), "value": len(active), "indicator": "Green", "datatype": "Int"},
 		{
