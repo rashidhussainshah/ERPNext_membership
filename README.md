@@ -56,7 +56,7 @@ Membership Type 1 ──< Member 1 ──< Dues Payment (submittable)
 
 ```bash
 cd ~/frappe-bench
-bench get-app https://github.com/<your-account>/membership_dues --branch main
+bench get-app https://github.com/rashidhussainshah/ERPNext_membership --branch main
 bench --site <site> install-app membership_dues
 ```
 
