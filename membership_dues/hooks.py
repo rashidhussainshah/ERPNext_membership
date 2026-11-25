@@ -1,8 +1,8 @@
 app_name = "membership_dues"
 app_title = "Membership Dues"
-app_publisher = "Your Name"
+app_publisher = "Rashid Bukhari"
 app_description = "Membership management and dues collection for Frappe and ERPNext"
-app_email = "you@example.com"
+app_email = "rashid.bukhari78600@gmail.com"
 app_license = "mit"
 
 # Send non-GET requests for this app's endpoints as native `application/json`

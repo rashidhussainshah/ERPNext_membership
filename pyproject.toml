@@ -1,7 +1,7 @@
 [project]
 name = "membership_dues"
 authors = [
-    { name = "Your Name", email = "you@example.com"}
+    { name = "Rashid Bukhari", email = "rashid.bukhari78600@gmail.com"}
 ]
 description = "Membership management and dues collection for Frappe and ERPNext"
 requires-python = ">=3.14"

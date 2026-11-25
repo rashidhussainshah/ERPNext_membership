@@ -1,4 +1,4 @@
-// Copyright (c) 2026, Your Name and contributors
+// Copyright (c) 2026, Rashid Bukhari and contributors
 // For license information, please see license.txt
 
 frappe.query_reports["Member Dues Status"] = {

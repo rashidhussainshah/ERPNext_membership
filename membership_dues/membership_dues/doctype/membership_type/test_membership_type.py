@@ -1,4 +1,4 @@
-# Copyright (c) 2026, Your Name and Contributors
+# Copyright (c) 2026, Rashid Bukhari and Contributors
 # See license.txt
 
 import frappe
