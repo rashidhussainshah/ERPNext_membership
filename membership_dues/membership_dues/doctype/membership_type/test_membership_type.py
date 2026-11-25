@@ -1,22 +1,29 @@
 # Copyright (c) 2026, Your Name and Contributors
 # See license.txt
 
-# import frappe
-from frappe.tests import IntegrationTestCase
+import frappe
 
+from membership_dues.tests.factories import IntegrationTestCase, make_membership_type
 
-# On IntegrationTestCase, the doctype test records and all
-# link-field test record dependencies are recursively loaded
-# Use these module variables to add/remove to/from that list
-EXTRA_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-IGNORE_TEST_RECORD_DEPENDENCIES = []  # eg. ["User"]
-
+EXTRA_TEST_RECORD_DEPENDENCIES = []
+IGNORE_TEST_RECORD_DEPENDENCIES = []
 
 
 class IntegrationTestMembershipType(IntegrationTestCase):
-	"""
-	Integration tests for MembershipType.
-	Use this class for testing interactions between multiple components.
-	"""
+	def test_valid_type_is_saved(self):
+		membership_type = make_membership_type(fee=120, duration_months=12, grace_period_days=15)
+		self.assertTrue(frappe.db.exists("Membership Type", membership_type.name))
 
-	pass
+	def test_fee_must_be_positive(self):
+		for fee in (0, -10):
+			with self.assertRaises(frappe.ValidationError):
+				make_membership_type(fee=fee)
+
+	def test_duration_must_be_within_limits(self):
+		for months in (0, 121):
+			with self.assertRaises(frappe.ValidationError):
+				make_membership_type(duration_months=months)
+
+	def test_grace_period_cannot_be_negative(self):
+		with self.assertRaises(frappe.ValidationError):
+			make_membership_type(grace_period_days=-1)

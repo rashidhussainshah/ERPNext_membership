@@ -307,3 +307,14 @@ require_type_annotated_api_methods = True
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+
+# Membership Dues
+# ---------------
+
+# Add the ERPNext Customer link when ERPNext is (or later becomes) installed
+after_install = "membership_dues.install.after_install"
+after_app_install = "membership_dues.install.after_app_install"
+
+scheduler_events = {
+	"daily": ["membership_dues.tasks.mark_lapsed_members"],
+}
